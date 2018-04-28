@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QList>
 #include <QVector>
+#include <QObject>
 #include <iostream>
 #include <unistd.h>
 
@@ -36,7 +37,7 @@ public:
     };
 
     void setData(){
-        for (int i = 0; i < 1000000; ++i)
+        for (int i = 0; i < 50000; ++i)
         {
             objectTest test("testdataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",i);
             this->_list.append(test);
@@ -56,6 +57,12 @@ public:
 
 };
 
+class UIchecker:  public QObject
+{
+    Q_OBJECT
+
+};
+
 
 int main(int argc, char *argv[])
 {
@@ -67,6 +74,8 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
+    std::cout << sizeof(objectTest) << std::endl;
+    sleep(2);
 
     {
         uQList qlist;
