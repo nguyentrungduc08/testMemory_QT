@@ -3,6 +3,7 @@
 #include <QList>
 #include <QVector>
 #include <iostream>
+#include <unistd.h>
 
 class objectTest{
 private:
@@ -15,7 +16,7 @@ public:
     };
 
     ~objectTest(){
-        std::cout << "released object" << std::endl;
+        std::cout << "released object " << _proInt << std::endl;
     };
 
 };
@@ -35,9 +36,9 @@ public:
     };
 
     void setData(){
-        for (int i = 0; i < 1000; ++i)
+        for (int i = 0; i < 1000000; ++i)
         {
-            objectTest test("testdata",0);
+            objectTest test("testdataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",i);
             this->_list.append(test);
         }
     };
@@ -69,6 +70,8 @@ int main(int argc, char *argv[])
 
     {
         uQList qlist;
+        qlist.setData();
+        sleep(10);
     }
 
     return app.exec();
