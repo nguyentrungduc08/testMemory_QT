@@ -37,12 +37,36 @@ public:
     };
 
     void setData(){
-        for (int i = 0; i < 50000; ++i)
+        for (int i = 0; i < 500000; ++i)
         {
-            objectTest test("testdataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",i);
+            objectTest test("asdfnnmgkdfawngdfnkdlngansdfknalkklfashdglajbdglkjasdbflkasdjfklahgakdfehinlfjnalkjdghkadjshfadshgdgjaksldlkasjdhfkajbdgldlkfjbaldkfghasdf",i);
             this->_list.append(test);
         }
     };
+
+
+    QList<objectTest> getlist() {
+        QList<objectTest> _listTest;
+
+        for (int i = 0; i < 500000; ++i)
+        {
+            objectTest test("asdfnnmgkdfawngdfnkdlngansdfknalkklfashdglajbdglkjasdbflkasdjfklahgakdfehinlfjnalkjdghkadjshfadshgdgjaksldlkasjdhfkajbdgldlkfjbaldkfghasdf",i);
+            _listTest.append(test);
+        }
+
+        std::cout <<" begin count to show "  << std::endl;
+        sleep(5);
+        std::cout <<" begin return data "  << std::endl;
+
+        return _listTest;
+    }
+
+    void testDataUsing(){
+        std::cout << "begin test getlist" << std::endl;
+        this->_list = getlist();
+        std::cout << "close test getlist" << std::endl;
+    }
+
 
 };
 
@@ -75,13 +99,11 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
     std::cout << sizeof(objectTest) << std::endl;
-    sleep(2);
 
-    {
-        uQList qlist;
-        qlist.setData();
-        sleep(10);
-    }
+
+    uQList qlist;
+    //qlist.testDataUsing();
+    qlist.setData();
 
     return app.exec();
 }
